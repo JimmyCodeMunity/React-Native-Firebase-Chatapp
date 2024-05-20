@@ -1,12 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import NavigationHandler from './navigation/NavigationHandler';
+import GlobalState from './context';
+import { AuthContextProvider } from './context/AuthContext';
+import { ChatContextProvider } from './context/ChatContext';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <AuthContextProvider>
+      <ChatContextProvider>
+        <NavigationHandler />
+        <StatusBar style="dark" hidden={true} />
+      </ChatContextProvider>
+    </AuthContextProvider>
   );
 }
 
